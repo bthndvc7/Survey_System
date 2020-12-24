@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SurveyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ANSWER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PERSONCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PERSONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SCORE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CREATEDATE" Type="DateTime" />
+    <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ANSWERLINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ANSWERID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="QUESTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ANSWER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PERSON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAMESURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CREATEDATE" Type="DateTime" />
+    <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MODIFYDATE" Type="DateTime" />
+    <Property Name="MODIFYBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="QUESTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QUESTION1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CREATEDATE" Type="DateTime" />
+    <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MODIFYDATE" Type="DateTime" />
+    <Property Name="MODIFYBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="SurveyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ANSWER" EntityType="Self.ANSWER" />
+    <EntitySet Name="ANSWERLINE" EntityType="Self.ANSWERLINE" />
+    <EntitySet Name="PERSON" EntityType="Self.PERSON" />
+    <EntitySet Name="QUESTION" EntityType="Self.QUESTION" />
+  </EntityContainer>
+</Schema>

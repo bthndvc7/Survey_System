@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SurveyModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ANSWER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PERSONCODE" Type="nvarchar2" MaxLength="10" />
+    <Property Name="PERSONNAME" Type="nvarchar2" MaxLength="50" />
+    <Property Name="USERCODE" Type="nvarchar2" MaxLength="50" />
+    <Property Name="SCORE" Type="nvarchar2" MaxLength="10" />
+    <Property Name="CREATEDATE" Type="date" />
+    <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ANSWERLINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ANSWERID" Type="number" Precision="38" Scale="0" />
+    <Property Name="QUESTION" Type="nvarchar2" MaxLength="250" />
+    <Property Name="ANSWER" Type="nvarchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PERSON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAMESURNAME" Type="nvarchar2" MaxLength="50" />
+    <Property Name="CODE" Type="nvarchar2" MaxLength="20" />
+    <Property Name="PASSWORD" Type="nvarchar2" MaxLength="20" />
+    <Property Name="CREATEDATE" Type="date" />
+    <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+    <Property Name="MODIFYDATE" Type="date" />
+    <Property Name="MODIFYBY" Type="nvarchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="QUESTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QUESTION" Type="nvarchar2" MaxLength="250" />
+    <Property Name="CREATEDATE" Type="date" />
+    <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+    <Property Name="MODIFYDATE" Type="date" />
+    <Property Name="MODIFYBY" Type="nvarchar2" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="SurveyModelStoreContainer">
+    <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="SYSTEM" store:Type="Tables" />
+    <EntitySet Name="ANSWERLINE" EntityType="Self.ANSWERLINE" Schema="SYSTEM" store:Type="Tables" />
+    <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="SYSTEM" store:Type="Tables" />
+    <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="SYSTEM" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
