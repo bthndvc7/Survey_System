@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Survey_System.Models.ANSWER>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/assets/js/jquery.min.js"></script>
+<link href="~/Content/assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<div class="card bg-light-grey">
+    <div class="row mt-4">
+        <div class="col-12 col-lg-6 col-xl-6">
+            <div class="card bg-tumblr">
+                <div class="card-body">
+                    <a href="/Answer/Create">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h4 class="text-white">Ankete Katıl</h4>
+                                <span class="text-white">Buraya tıklayarak ankete katılabilirsiniz.</span>
+                            </div>
+                            <div class="align-self-center"><span id="dash-chart-1"></span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-6">
+            <div class="card bg-tumblr">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body text-left">
+                            <h4 class="text-white">@Model.Count()</h4>
+                            <span class="text-white">Katılım Sağlanan Anket Sayısı</span>
+                        </div>
+                        <div class="align-self-center"><span id="dash-chart-2"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="body">
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered" cellpadding="0" style="width:200px;">
+                <thead>
+                    <tr class="bg-linkedin" style="color:white">
+                        <td>Ad Soyad</td>
+                        <td>K. Kodu</td>
+                        <td>Score</td>
+                        <td>Eklenme Tarihi</td>
+                        <td>Ekleyen Kişi</td>
+                        <td>İşlemler</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.PERSONNAME</td>
+                            <td>@item.PERSONCODE</td>
+                            <td>@item.SCORE</td>
+                            <td>@item.CREATEDATE</td>
+                            <td>@item.CREATEBY</td>
+                            <td>
+                                <a class="btn btn-linkedin" href="/Answer/Detail/@item.ID"><i class="fa fa-pencil text-white"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/Content/assets/plugins/bootstrap-datatable/js/jquery.dataTables.min.js"></script>
+
+<script src="~/Content/assets/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/Content/assets/plugins/bootstrap-datatable/js/dataTables.buttons.min.js"></script>
+
+<script type="text/javascript">
+    var jQueryCalis = $.noConflict(true);
+    (function ($) {
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "lengthMenu": [[50, 50, -1], [50, 50, "Tümü"]],
+                "ordering": true,
+                "caseInsensitive": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+                }
+            });
+            var table = $('#example').DataTable();
+            $('#example').show();
+        });
+    })(jQueryCalis);
+</script>

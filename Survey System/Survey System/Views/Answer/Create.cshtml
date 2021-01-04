@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Survey_System.Models.QUESTION>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int number = 1;
+
+    int kkatiliyorum = 5;
+    int katiliyorum = 10;
+    int kararsizim = 15;
+    int katilmiyorum = 20;
+    int kkatilmiyorum = 25;
+}
+<script src="~/Content/assets/js/jquery.min.js"></script>
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title text-center">Anketimize Hoş Geldiniz</div>
+        <hr>
+        @using (Html.BeginForm("Create", "Answer"))
+        {
+            <div class="form-group">
+                @Html.DropDownList("CODE", (SelectList)ViewBag.PERSON, "Lütfen Kişi Seçiniz", new { @class = "form-control" })
+            </div>
+
+            foreach (var item in Model)
+            {
+
+
+                <input name="@item.QUESTIONLINE" id="QUESTION_@item.ID" value="@item.QUESTIONLINE" type="hidden" />
+
+                <span style="font-weight:bold">@number</span>
+                @item.QUESTIONLINE
+                if (item.IMGLINE != null)
+                {
+                    <div class="text-left">
+                        <img src="@item.IMGLINE" />
+                    </div>
+                }
+                <br /><br />
+                <div class="icheck-material-primary icheck-inline">
+                    <input type="radio" id="ID_@kkatiliyorum" name="ANSWER_@item.ID" class="radio_@item.ID" value="Kesinlikle Katılıyorum">
+                    <label for="ID_@kkatiliyorum">Kesinlikle Katılıyorum</label>
+                    <br />
+                    <input type="radio" id="ID_@katiliyorum" name="ANSWER_@item.ID" class="radio_@item.ID" value="Katılıyorum">
+                    <label for="ID_@katiliyorum">Katılıyorum</label>
+                    <br />
+                    <input type="radio" id="ID_@kararsizim" name="ANSWER_@item.ID" class="radio_@item.ID" value="Kararsızım">
+                    <label for="ID_@kararsizim">Kararsızım</label>
+                    <br />
+                    <input type="radio" id="ID_@katilmiyorum" name="ANSWER_@item.ID" class="radio_@item.ID" value="Katılmıyorum">
+                    <label for="ID_@katilmiyorum">Katılmıyorum</label>
+                    <br />
+                    <input type="radio" id="ID_@kkatilmiyorum" name="ANSWER_@item.ID" class="radio_@item.ID" value="Kesinlikle Katılmıyorum">
+                    <label for="ID_@kkatilmiyorum">Kesinlikle Katılmıyorum</label>
+                </div>
+                <script>
+                    $('.radio_@item.ID').click(function () {
+                        var formdata = new FormData();
+
+                        var code = $('#CODE').val();
+                        formdata.set("CODE", code);
+
+                        var namesurname = $('#CODE :selected').text();
+                        formdata.set("NAMESURNAME", namesurname);
+
+
+                        var question = $('#QUESTION_@item.ID').val();
+                        formdata.set("QUESTION", question);
+
+                        var answer = $('input[name="ANSWER_@item.ID"]:checked').val();
+                        formdata.set("ANSWER", answer);
+
+                        if (code == '') {
+                            $('#warningMessage').modal('show');
+                            return;
+                        }
+
+                        $.ajax({
+                            url: "/Answer/SendData",
+                            data: formdata,
+                            type: "POST",
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (data) {
+                                if (data == "True") { }
+                            },
+                            error: function (data) {
+                                alert("Ekleme işlemi sırasında bir hata oluştu!");
+                            }
+                        });
+                    });
+                </script>
+                kkatiliyorum++;
+                katiliyorum++;
+                kararsizim++;
+                katilmiyorum++;
+                kkatilmiyorum++;
+                number++;
+            }
+            <div class="form-group">
+                <button type="submit" class="btn btn-tumblr text-white"><i class="icon-tag"></i> Seç</button>
+            </div>
+        }
+    </div>
+</div>
+<div class="modal fade" id="warningMessage">
+    <div class="modal-dialog">
+        <div class="modal-content border-dark">
+            <div class="modal-header bg-github">
+                <h5 class="modal-title text-white"><i class="fa fa-trash-o"></i> Kişi seçilmedi!!</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Lütfen kişi seçiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-tumblr text-white" data-dismiss="modal"><i class="fa fa-times"></i> Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

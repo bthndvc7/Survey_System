@@ -1,0 +1,21 @@
+﻿@model Survey_System.Models.QUESTION
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Soru Düzenle</div>
+        <hr>
+        <form action="/Question/Edit" method="post">
+            <input type="hidden" name="ID" value="@Model.ID" />
+            <div class="form-group">
+                <label for="input-1">Soruyu Düzenle</label>
+                <input type="text" class="form-control" name="QUESTIONLINE" id="input-1" placeholder="Soru Giriniz." maxlength="250" required value="@Model.QUESTIONLINE">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-tumblr text-white"><i class="icon-tag"></i> Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANSWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERSONCODE" Type="nvarchar2" MaxLength="10" />
+          <Property Name="PERSONNAME" Type="nvarchar2" MaxLength="50" />
+          <Property Name="USERCODE" Type="nvarchar2" MaxLength="50" />
+          <Property Name="SCORE" Type="nvarchar2" MaxLength="50" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ANSWERLINE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANSWERID" Type="number" Precision="38" Scale="0" />
+          <Property Name="QUESTION" Type="nvarchar2" MaxLength="250" />
+          <Property Name="ANSWER" Type="nvarchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAMESURNAME" Type="nvarchar2" MaxLength="50" />
+          <Property Name="CODE" Type="nvarchar2" MaxLength="20" />
+          <Property Name="PASSWORD" Type="nvarchar2" MaxLength="20" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="MODIFYBY" Type="nvarchar2" MaxLength="50" />
+          <Property Name="ISADMIN" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="QUESTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTIONLINE" Type="nvarchar2" MaxLength="250" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="CREATEBY" Type="nvarchar2" MaxLength="50" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="MODIFYBY" Type="nvarchar2" MaxLength="50" />
+          <Property Name="IMGLINE" Type="nvarchar2" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="ANSWERLINE" EntityType="Self.ANSWERLINE" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="SYSTEM" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ANSWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERSONCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PERSONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USERCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SCORE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" />
+          <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ANSWERLINE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANSWERID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="QUESTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ANSWER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAMESURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" />
+          <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="MODIFYBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISADMIN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="QUESTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTIONLINE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" />
+          <Property Name="CREATEBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="MODIFYBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMGLINE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SurveyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ANSWER" EntityType="Self.ANSWER" />
+          <EntitySet Name="ANSWERLINE" EntityType="Self.ANSWERLINE" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" />
+          <EntitySet Name="QUESTION" EntityType="Self.QUESTION" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SurveyEntities">
+          <EntitySetMapping Name="ANSWER">
+            <EntityTypeMapping TypeName="Model.ANSWER">
+              <MappingFragment StoreEntitySet="ANSWER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PERSONCODE" ColumnName="PERSONCODE" />
+                <ScalarProperty Name="PERSONNAME" ColumnName="PERSONNAME" />
+                <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+                <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEBY" ColumnName="CREATEBY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ANSWERLINE">
+            <EntityTypeMapping TypeName="Model.ANSWERLINE">
+              <MappingFragment StoreEntitySet="ANSWERLINE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ANSWERID" ColumnName="ANSWERID" />
+                <ScalarProperty Name="QUESTION" ColumnName="QUESTION" />
+                <ScalarProperty Name="ANSWER" ColumnName="ANSWER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSON">
+            <EntityTypeMapping TypeName="Model.PERSON">
+              <MappingFragment StoreEntitySet="PERSON">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAMESURNAME" ColumnName="NAMESURNAME" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEBY" ColumnName="CREATEBY" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
+                <ScalarProperty Name="ISADMIN" ColumnName="ISADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION">
+            <EntityTypeMapping TypeName="Model.QUESTION">
+              <MappingFragment StoreEntitySet="QUESTION">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QUESTIONLINE" ColumnName="QUESTIONLINE" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEBY" ColumnName="CREATEBY" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
+                <ScalarProperty Name="IMGLINE" ColumnName="IMGLINE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

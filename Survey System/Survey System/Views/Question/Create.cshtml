@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Survey_System.Models.QUESTION>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Soru Ekle</div>
+        <hr>
+        @using (Html.BeginForm("Create", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <div class="form-group">
+            <label for="input-1">Soru Ekle</label>
+            <input type="text" class="form-control" name="QUESTIONLINE" id="input-1" placeholder="Soru Giriniz." maxlength="250" required>
+        </div>
+        <div class="form-group">
+            <input type="file" name="uploadingFiles" />
+            <input type="submit" value="Upload file" />
+        </div>
+        }
+    </div>
+</div>
